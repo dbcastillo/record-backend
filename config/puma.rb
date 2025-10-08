@@ -27,14 +27,9 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
-# Puma listens on the port Render provides
+# Only use this line to listen on the port Render assigns
 port ENV.fetch("PORT", 3000)
-bind "tcp://0.0.0.0:#{ENV.fetch("PORT", 3000)}"
 
 plugin :tmp_restart
-
-# Solid Queue plugin if needed
 plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
-
-# Optional PID file
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
